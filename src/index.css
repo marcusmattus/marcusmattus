@@ -88,6 +88,11 @@ h1, h2, h3, h4, h5, h6 {
   100% { width: var(--xp-percent); }
 }
 
+/* SVG flow-diagram path animation — pure CSS, no RAF/state */
+@keyframes dash-flow {
+  to { stroke-dashoffset: -12; }
+}
+
 .animate-float { animation: float 6s ease-in-out infinite; }
 .animate-float-delay { animation: float 6s ease-in-out infinite 2s; }
 .animate-float-delay-2 { animation: float 6s ease-in-out infinite 4s; }

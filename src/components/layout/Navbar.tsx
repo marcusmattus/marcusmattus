@@ -23,7 +23,7 @@ export default function Navbar() {
           <div className="w-8 h-8 bg-gami-purple flex items-center justify-center shadow-brutal-sm group-hover:shadow-brutal-purple transition-shadow">
             <Zap size={18} className="text-white" fill="white" />
           </div>
-          <span className="font-display font-700 text-xl tracking-tight text-white">
+          <span className="font-display font-bold text-xl tracking-tight text-white">
             GAMI<span className="text-gami-green">.</span>
           </span>
         </Link>

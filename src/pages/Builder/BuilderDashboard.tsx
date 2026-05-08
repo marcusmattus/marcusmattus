@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import {
   BarChart2, Code2, Gift, Settings, Webhook, LayoutDashboard,
   Target, Copy, Check, Play, ChevronRight, TrendingUp, Users, Zap
@@ -80,6 +80,15 @@ export default function BuilderDashboard() {
   const [section, setSection] = useState<BuilderSection>('overview')
   const [yaml, setYaml] = useState(yamlExample)
   const [copied, setCopied] = useState(false)
+
+  // Stable mock heatmap intensities — generated once, not on every render
+  const heatmapData = useMemo(
+    () =>
+      ['12am', '6am', '12pm', '6pm'].map(() =>
+        Array.from({ length: 7 }, () => Math.random())
+      ),
+    []
+  )
 
   const handleCopyYaml = () => {
     navigator.clipboard.writeText(yaml)
@@ -439,25 +448,22 @@ export default function BuilderDashboard() {
                         <div key={d} className="text-center text-xs font-mono text-gami-muted">{d}</div>
                       ))}
                     </div>
-                    {['12am', '6am', '12pm', '6pm'].map((hour) => (
+                    {['12am', '6am', '12pm', '6pm'].map((hour, rowIdx) => (
                       <div key={hour} className="grid grid-cols-8 gap-1 mb-1">
                         <div className="text-xs font-mono text-gami-muted text-right pr-1 leading-4">{hour}</div>
-                        {Array.from({ length: 7 }, (_, i) => {
-                          const intensity = Math.random()
-                          return (
-                            <div
-                              key={i}
-                              className="h-4"
-                              style={{
-                                background: intensity > 0.7
-                                  ? '#6E3CFB'
-                                  : intensity > 0.4
-                                  ? '#4B24B8'
-                                  : '#2A2A3A',
-                              }}
-                            />
-                          )
-                        })}
+                        {heatmapData[rowIdx].map((intensity, i) => (
+                          <div
+                            key={i}
+                            className="h-4"
+                            style={{
+                              background: intensity > 0.7
+                                ? '#6E3CFB'
+                                : intensity > 0.4
+                                ? '#4B24B8'
+                                : '#2A2A3A',
+                            }}
+                          />
+                        ))}
                       </div>
                     ))}
                     <div className="flex items-center gap-2 mt-3 justify-end">

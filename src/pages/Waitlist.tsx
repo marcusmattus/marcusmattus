@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom'
 import Navbar from '../components/layout/Navbar'
 import Footer from '../components/layout/Footer'
 
-const TARGET_DATE = new Date('2024-12-01T00:00:00Z')
+// Target date: 90 days from the first time this module is loaded so the
+// countdown is always active in development and demo environments.
+const TARGET_DATE = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000)
 
 function useCountdown() {
   const calc = () => {

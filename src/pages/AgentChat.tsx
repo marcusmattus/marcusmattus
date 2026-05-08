@@ -110,10 +110,14 @@ export default function AgentChat() {
   const [input, setInput] = useState('')
   const [isTyping, setIsTyping] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
+  const replyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, isTyping])
+
+  // Clear any pending reply timer when the component unmounts
+  useEffect(() => () => { if (replyTimerRef.current) clearTimeout(replyTimerRef.current) }, [])
 
   const sendMessage = (text?: string) => {
     const content = text || input.trim()
@@ -129,7 +133,9 @@ export default function AgentChat() {
     setInput('')
     setIsTyping(true)
 
-    setTimeout(() => {
+    // Cancel any in-flight reply before scheduling a new one
+    if (replyTimerRef.current) clearTimeout(replyTimerRef.current)
+    replyTimerRef.current = setTimeout(() => {
       setIsTyping(false)
       const reply: Message = {
         id: (Date.now() + 1).toString(),

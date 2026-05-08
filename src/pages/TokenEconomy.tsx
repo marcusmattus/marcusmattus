@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import {
   PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend
@@ -110,17 +110,8 @@ const flowNodes = [
 ]
 
 export default function TokenEconomy() {
-  const [animOffset, setAnimOffset] = useState(0)
-  const animRef = useRef<number>()
-
-  useEffect(() => {
-    const animate = () => {
-      setAnimOffset((prev) => (prev + 0.5) % 100)
-      animRef.current = requestAnimationFrame(animate)
-    }
-    animRef.current = requestAnimationFrame(animate)
-    return () => { if (animRef.current) cancelAnimationFrame(animRef.current) }
-  }, [])
+  // animRef is kept for any future imperative SVG access; animation is CSS-driven (no RAF state).
+  const animRef = useRef<SVGPathElement>(null)
 
   return (
     <div className="min-h-screen bg-gami-bg">
@@ -341,7 +332,7 @@ export default function TokenEconomy() {
                     stroke={path.color}
                     strokeWidth="2"
                     strokeDasharray="8 4"
-                    strokeDashoffset={-animOffset}
+                    style={{ animation: 'dash-flow 2s linear infinite' }}
                     markerEnd="url(#arrowhead)"
                     opacity={0.8}
                   />
