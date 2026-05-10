@@ -118,7 +118,7 @@ export default function BuilderDashboard() {
               <button
                 key={item.id}
                 onClick={() => setSection(item.id)}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm font-body mb-1 transition-colors text-left ${
+                className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm font-sans mb-1 transition-colors text-left ${
                   section === item.id
                     ? 'bg-gami-purple text-white shadow-brutal-sm'
                     : 'text-gami-muted hover:text-white hover:bg-gami-bg'
@@ -148,7 +148,7 @@ export default function BuilderDashboard() {
             <div>
               <div className="mb-8">
                 <h1 className="font-display font-bold text-2xl text-white">Builder Dashboard</h1>
-                <p className="text-gami-muted text-sm font-body mt-1">Manage your gamification campaigns and quests</p>
+                <p className="text-gami-muted text-sm font-sans mt-1">Manage your gamification campaigns and quests</p>
               </div>
 
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
@@ -339,7 +339,7 @@ export default function BuilderDashboard() {
                         </div>
                         <span className="text-xs font-mono text-gami-green border border-gami-green px-1.5 py-0.5">Easy</span>
                       </div>
-                      <p className="text-gami-muted text-xs font-body mb-4">
+                      <p className="text-gami-muted text-xs font-sans mb-4">
                         Make your first purchase in the app
                       </p>
                       <div className="w-full h-1.5 bg-gami-border mb-2">

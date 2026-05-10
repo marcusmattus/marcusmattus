@@ -10,6 +10,7 @@ import Navbar from '../../components/layout/Navbar'
 import XPBar from '../../components/xp/XPBar'
 import QuestCard from '../../components/xp/QuestCard'
 import StreakBadge from '../../components/xp/StreakBadge'
+import { MOCK_QUESTS } from '../../lib/mockData'
 
 const sparklineData = [
   { xp: 100 }, { xp: 450 }, { xp: 200 }, { xp: 800 }, { xp: 600 },
@@ -106,7 +107,7 @@ export default function XPDashboard() {
             {navItems.map((item) => (
               <button
                 key={item.label}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm font-body mb-1 transition-colors text-left ${
+                className={`w-full flex items-center gap-3 px-3 py-2.5 text-sm font-sans mb-1 transition-colors text-left ${
                   item.active
                     ? 'bg-gami-purple text-white shadow-brutal-sm'
                     : 'text-gami-muted hover:text-white hover:bg-gami-bg'
@@ -135,7 +136,7 @@ export default function XPDashboard() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h1 className="font-display font-bold text-2xl text-white">XP Dashboard</h1>
-              <p className="text-gami-muted text-sm font-body mt-1">
+              <p className="text-gami-muted text-sm font-sans mt-1">
                 LVL 42 · Rank <span className="text-gami-yellow font-mono">#4,821</span> globally
               </p>
             </div>
@@ -216,42 +217,11 @@ export default function XPDashboard() {
               </button>
             </div>
             <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2">
-              <QuestCard
-                title="First Purchase"
-                description="Make your first purchase on any integrated app to unlock this quest reward."
-                progress={60}
-                xpReward={500}
-                timeRemaining="2d left"
-                category="Commerce"
-                difficulty="Easy"
-              />
-              <QuestCard
-                title="Polygon Quest"
-                description="Complete 5 transactions on the Polygon network to earn the Polygon Pioneer badge."
-                progress={30}
-                xpReward={750}
-                timeRemaining="5d left"
-                category="DeFi"
-                difficulty="Medium"
-              />
-              <QuestCard
-                title="Discord Champion"
-                description="Participate in 10 community discussions and earn the Discord Champion title."
-                progress={85}
-                xpReward={1000}
-                timeRemaining="1d left"
-                category="Social"
-                difficulty="Hard"
-              />
-              <QuestCard
-                title="DeFi Degen"
-                description="Provide liquidity on 3 different protocols to prove your DeFi expertise."
-                progress={10}
-                xpReward={2000}
-                timeRemaining="7d left"
-                category="DeFi"
-                difficulty="Epic"
-              />
+              {MOCK_QUESTS.filter((q) => q.status !== 'completed').slice(0, 4).map((quest) => (
+                <div key={quest.id} className="min-w-[280px]">
+                  <QuestCard quest={quest} compact />
+                </div>
+              ))}
             </div>
           </div>
 
@@ -265,7 +235,7 @@ export default function XPDashboard() {
                 <div key={i} className="flex items-center justify-between px-5 py-3 hover:bg-gami-bg transition-colors">
                   <div className="flex items-center gap-3">
                     <span className="text-lg">{a.icon}</span>
-                    <span className="text-sm font-body text-gami-muted">{a.action}</span>
+                    <span className="text-sm font-sans text-gami-muted">{a.action}</span>
                   </div>
                   <div className="flex items-center gap-4">
                     <span className={`text-sm font-mono font-semibold ${a.color}`}>{a.xp}</span>
@@ -364,7 +334,7 @@ export default function XPDashboard() {
               <span className="text-xs font-mono text-gami-yellow uppercase tracking-widest">Weekly Challenge</span>
             </div>
             <h3 className="font-display font-semibold text-white text-sm mb-1">{weeklyChallenge.title}</h3>
-            <p className="text-gami-muted text-xs font-body leading-relaxed mb-3">{weeklyChallenge.desc}</p>
+            <p className="text-gami-muted text-xs font-sans leading-relaxed mb-3">{weeklyChallenge.desc}</p>
             <div className="w-full h-1.5 bg-gami-border mb-1.5">
               <div
                 className="h-full bg-gami-purple transition-all"
@@ -383,7 +353,7 @@ export default function XPDashboard() {
           {/* Referral Link */}
           <div className="bg-gami-bg border border-gami-border p-4 shadow-brutal-sm">
             <span className="text-xs font-mono text-gami-muted uppercase tracking-widest">Referral Link</span>
-            <p className="text-xs font-body text-gami-muted mt-2 mb-3">
+            <p className="text-xs font-sans text-gami-muted mt-2 mb-3">
               Earn <span className="text-gami-green font-mono">+200 XP</span> for every friend you refer.
             </p>
             <div className="flex items-center gap-2">

@@ -230,7 +230,7 @@ export default function Landing() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-gami-muted font-body text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-gami-muted font-sans text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
           >
             Add XP, quests, leaderboards, and on-chain rewards to any app in minutes.
             The protocol powers engagement for 847K+ players across 312 apps.
@@ -262,7 +262,7 @@ export default function Landing() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-8 flex items-center justify-center gap-6 text-sm text-gami-muted font-body"
+            className="mt-8 flex items-center justify-center gap-6 text-sm text-gami-muted font-sans"
           >
             <span className="flex items-center gap-1.5">
               <Check size={14} className="text-gami-green" /> No credit card
@@ -311,7 +311,7 @@ export default function Landing() {
                 {step.num}
               </div>
               <h3 className="font-display font-semibold text-xl text-white mb-3">{step.title}</h3>
-              <p className="text-gami-muted font-body text-sm leading-relaxed mb-6">{step.desc}</p>
+              <p className="text-gami-muted font-sans text-sm leading-relaxed mb-6">{step.desc}</p>
               <div className="bg-gami-bg border border-gami-border p-4">
                 <pre className="text-gami-green text-xs font-mono whitespace-pre-wrap">{step.code}</pre>
               </div>
@@ -338,7 +338,7 @@ export default function Landing() {
                     <span className="text-gami-muted text-xl ml-1">{stat.suffix}</span>
                   )}
                 </div>
-                <p className="text-gami-muted text-sm font-body">{stat.label}</p>
+                <p className="text-gami-muted text-sm font-sans">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -352,7 +352,7 @@ export default function Landing() {
           <h2 className="font-display font-bold text-4xl text-white mt-2">
             Everything you need to gamify
           </h2>
-          <p className="text-gami-muted font-body mt-4 max-w-xl mx-auto">
+          <p className="text-gami-muted font-sans mt-4 max-w-xl mx-auto">
             Battle-tested infrastructure powering the next generation of engaging applications.
           </p>
         </div>
@@ -371,7 +371,7 @@ export default function Landing() {
                 </span>
               </div>
               <h3 className="font-display font-semibold text-white text-lg mb-2">{f.title}</h3>
-              <p className="text-gami-muted font-body text-sm leading-relaxed">{f.desc}</p>
+              <p className="text-gami-muted font-sans text-sm leading-relaxed">{f.desc}</p>
               <div className="mt-4 flex items-center gap-1 text-gami-purple text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
                 Learn more <ChevronRight size={14} />
               </div>
@@ -388,7 +388,7 @@ export default function Landing() {
             <h2 className="font-display font-bold text-4xl text-white mt-3 mb-4">
               Five lines to gamify<br />anything.
             </h2>
-            <p className="text-gami-muted font-body text-lg leading-relaxed mb-8">
+            <p className="text-gami-muted font-sans text-lg leading-relaxed mb-8">
               Our SDK handles XP calculation, quest management, leaderboards, and on-chain rewards.
               You focus on your product.
             </p>
@@ -475,14 +475,14 @@ export default function Landing() {
             {[...Array(5)].map((_, i) => (
               <Star key={i} size={20} className="text-gami-yellow" fill="currentColor" />
             ))}
-            <span className="text-gami-muted text-sm font-body ml-2">
+            <span className="text-gami-muted text-sm font-sans ml-2">
               Rated 4.9/5 by 200+ developers
             </span>
           </div>
           <h2 className="font-display font-bold text-white mb-6" style={{ fontSize: '3rem' }}>
             Start building the future<br />of engagement.
           </h2>
-          <p className="text-gami-muted font-body text-xl mb-10">
+          <p className="text-gami-muted font-sans text-xl mb-10">
             Join 312 apps already on Gami Protocol. Free tier includes 10,000 XP events/month.
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap">

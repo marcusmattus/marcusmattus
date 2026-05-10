@@ -147,7 +147,7 @@ export default function TokenEconomy() {
           <h1 className="font-display font-bold text-white mb-4" style={{ fontSize: 'clamp(36px, 6vw, 64px)' }}>
             $GAMI: The Currency of Play
           </h1>
-          <p className="text-gami-muted font-body text-xl max-w-2xl mx-auto leading-relaxed mb-10">
+          <p className="text-gami-muted font-sans text-xl max-w-2xl mx-auto leading-relaxed mb-10">
             The native token of the Gami Protocol ecosystem. Earn it by playing, stake it to earn,
             and use it to govern the future of on-chain gamification.
           </p>
@@ -191,7 +191,7 @@ export default function TokenEconomy() {
                 {u.icon}
               </div>
               <h3 className="font-display font-semibold text-white text-lg mb-2">{u.title}</h3>
-              <p className="text-gami-muted font-body text-sm leading-relaxed">{u.desc}</p>
+              <p className="text-gami-muted font-sans text-sm leading-relaxed">{u.desc}</p>
             </div>
           ))}
         </div>
@@ -208,7 +208,7 @@ export default function TokenEconomy() {
                 <div key={d.name} className="flex items-center gap-3">
                   <div className="w-3 h-3 flex-shrink-0" style={{ background: d.color }} />
                   <div className="flex-1 flex items-center justify-between">
-                    <span className="text-sm font-body text-gami-muted">{d.name}</span>
+                    <span className="text-sm font-sans text-gami-muted">{d.name}</span>
                     <div className="flex items-center gap-3">
                       <div className="w-32 h-2 bg-gami-bg border border-gami-border overflow-hidden">
                         <div className="h-full" style={{ width: `${d.value}%`, background: d.color }} />
@@ -252,7 +252,7 @@ export default function TokenEconomy() {
         <div className="text-center mb-16">
           <span className="text-xs font-mono text-gami-muted uppercase tracking-widest">Staking Program</span>
           <h2 className="font-display font-bold text-4xl text-white mt-2">Stake $GAMI, Earn More</h2>
-          <p className="text-gami-muted font-body mt-4">
+          <p className="text-gami-muted font-sans mt-4">
             Lock your tokens to unlock multiplied yields and XP bonuses.
           </p>
         </div>
@@ -284,7 +284,7 @@ export default function TokenEconomy() {
 
               <div className="border-t border-gami-border pt-4 space-y-1.5">
                 {tier.perks.map((perk) => (
-                  <div key={perk} className="flex items-center gap-2 text-xs font-body text-gami-muted">
+                  <div key={perk} className="flex items-center gap-2 text-xs font-sans text-gami-muted">
                     <span className="text-gami-green">✓</span> {perk}
                   </div>
                 ))}

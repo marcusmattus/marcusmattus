@@ -212,7 +212,7 @@ export default function SDKDocs() {
                       <button
                         key={item}
                         onClick={() => setActiveSection(item)}
-                        className={`w-full text-left px-3 py-1.5 text-sm font-body transition-colors ${
+                        className={`w-full text-left px-3 py-1.5 text-sm font-sans transition-colors ${
                           activeSection === item
                             ? 'text-gami-purple font-medium'
                             : 'text-gami-muted hover:text-white'
@@ -240,7 +240,7 @@ export default function SDKDocs() {
           </div>
 
           <h1 className="font-display font-bold text-3xl text-white mb-2">{activeSection}</h1>
-          <p className="text-gami-muted font-body text-lg mb-8 leading-relaxed">
+          <p className="text-gami-muted font-sans text-lg mb-8 leading-relaxed">
             Add gamification to any app with five lines of code. The Gami SDK handles XP calculation,
             quest management, leaderboards, and on-chain rewards automatically.
           </p>
@@ -255,7 +255,7 @@ export default function SDKDocs() {
                     {s.step}
                   </div>
                   <div className="flex-1">
-                    <div className="text-sm font-body text-gami-muted mb-1.5">{s.label}</div>
+                    <div className="text-sm font-sans text-gami-muted mb-1.5">{s.label}</div>
                     <div className="bg-gami-bg border border-gami-border px-4 py-2.5">
                       <code className="text-gami-green font-mono text-sm">{s.code}</code>
                     </div>
@@ -332,7 +332,7 @@ export default function SDKDocs() {
                     </span>
                   </div>
                   <div className="col-span-5 font-mono text-gami-accent text-sm">{ep.path}</div>
-                  <div className="col-span-4 text-sm font-body text-gami-muted">{ep.desc}</div>
+                  <div className="col-span-4 text-sm font-sans text-gami-muted">{ep.desc}</div>
                   <div className="col-span-1 text-xs font-mono text-center">
                     {ep.auth ? (
                       <span className="text-gami-yellow">🔑</span>
@@ -359,7 +359,7 @@ export default function SDKDocs() {
                 <div key={err.code} className="flex gap-4 items-start bg-gami-surface border border-gami-border px-4 py-3">
                   <span className="font-mono text-gami-red text-sm font-bold w-10 flex-shrink-0">{err.code}</span>
                   <span className="font-mono text-gami-yellow text-sm w-40 flex-shrink-0">{err.name}</span>
-                  <span className="text-sm font-body text-gami-muted">{err.desc}</span>
+                  <span className="text-sm font-sans text-gami-muted">{err.desc}</span>
                 </div>
               ))}
             </div>
@@ -370,7 +370,7 @@ export default function SDKDocs() {
         <aside className="hidden lg:flex flex-col w-80 bg-gami-surface border-l border-gami-border fixed right-0 top-16 bottom-0 overflow-y-auto p-5 gap-5">
           <div>
             <h3 className="font-display font-semibold text-white mb-1">API Playground</h3>
-            <p className="text-xs font-body text-gami-muted">Try API calls live against the testnet.</p>
+            <p className="text-xs font-sans text-gami-muted">Try API calls live against the testnet.</p>
           </div>
 
           <div className="space-y-3">
@@ -434,13 +434,13 @@ export default function SDKDocs() {
           )}
 
           <div className="border-t border-gami-border pt-4 space-y-2">
-            <a href="#" className="flex items-center gap-2 text-xs font-body text-gami-muted hover:text-white transition-colors">
+            <a href="#" className="flex items-center gap-2 text-xs font-sans text-gami-muted hover:text-white transition-colors">
               <ExternalLink size={12} /> Full API Reference
             </a>
-            <a href="#" className="flex items-center gap-2 text-xs font-body text-gami-muted hover:text-white transition-colors">
+            <a href="#" className="flex items-center gap-2 text-xs font-sans text-gami-muted hover:text-white transition-colors">
               <ExternalLink size={12} /> Postman Collection
             </a>
-            <a href="#" className="flex items-center gap-2 text-xs font-body text-gami-muted hover:text-white transition-colors">
+            <a href="#" className="flex items-center gap-2 text-xs font-sans text-gami-muted hover:text-white transition-colors">
               <ExternalLink size={12} /> OpenAPI Spec (JSON)
             </a>
           </div>

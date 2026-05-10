@@ -46,7 +46,7 @@ export default function Auth() {
               Your gateway to the<br />
               <span className="text-gami-purple">XP economy.</span>
             </h1>
-            <p className="text-gami-muted font-body text-lg leading-relaxed">
+            <p className="text-gami-muted font-sans text-lg leading-relaxed">
               One identity. Every app. All your XP, quests, and rewards in one place.
             </p>
           </div>
@@ -60,7 +60,7 @@ export default function Auth() {
             ].map((s) => (
               <div key={s.label} className="bg-gami-bg border border-gami-border p-4 shadow-brutal-sm">
                 <div className={`font-mono font-bold text-xl ${s.color}`}>{s.value}</div>
-                <div className="text-xs font-body text-gami-muted mt-0.5">{s.label}</div>
+                <div className="text-xs font-sans text-gami-muted mt-0.5">{s.label}</div>
               </div>
             ))}
           </div>
@@ -82,7 +82,7 @@ export default function Auth() {
               <span className="font-display font-bold text-lg text-white">GAMI.</span>
             </Link>
             <h2 className="font-display font-bold text-2xl text-white mb-1">Welcome back</h2>
-            <p className="text-gami-muted font-body text-sm">Connect your wallet or sign in to continue</p>
+            <p className="text-gami-muted font-sans text-sm">Connect your wallet or sign in to continue</p>
           </div>
 
           {/* Tab Switcher */}
@@ -129,7 +129,7 @@ export default function Auth() {
                         className="flex items-center gap-2 bg-gami-bg border border-gami-border p-3 hover:border-gami-purple hover:shadow-brutal-sm transition-all text-left"
                       >
                         <span className="text-lg">{w.icon}</span>
-                        <span className="text-sm font-body text-white">{w.name}</span>
+                        <span className="text-sm font-sans text-white">{w.name}</span>
                       </button>
                     ))}
                   </div>
@@ -144,11 +144,11 @@ export default function Auth() {
 
                 {/* Social Login */}
                 <div className="grid grid-cols-2 gap-3 mb-4">
-                  <button className="flex items-center justify-center gap-2 bg-gami-surface border border-gami-border py-3 text-sm font-body text-white hover:border-gami-purple transition-colors shadow-brutal-sm">
+                  <button className="flex items-center justify-center gap-2 bg-gami-surface border border-gami-border py-3 text-sm font-sans text-white hover:border-gami-purple transition-colors shadow-brutal-sm">
                     <Chrome size={16} />
                     Google
                   </button>
-                  <button className="flex items-center justify-center gap-2 bg-gami-surface border border-gami-border py-3 text-sm font-body text-white hover:border-gami-purple transition-colors shadow-brutal-sm">
+                  <button className="flex items-center justify-center gap-2 bg-gami-surface border border-gami-border py-3 text-sm font-sans text-white hover:border-gami-purple transition-colors shadow-brutal-sm">
                     <Github size={16} />
                     GitHub
                   </button>
@@ -163,7 +163,7 @@ export default function Auth() {
                         <input
                           type="text"
                           placeholder="Company name"
-                          className="w-full bg-gami-surface border border-gami-border pl-9 pr-4 py-3 text-sm font-body text-white placeholder-gami-muted focus:outline-none focus:border-gami-purple transition-colors"
+                          className="w-full bg-gami-surface border border-gami-border pl-9 pr-4 py-3 text-sm font-sans text-white placeholder-gami-muted focus:outline-none focus:border-gami-purple transition-colors"
                         />
                       </div>
                     )}
@@ -172,7 +172,7 @@ export default function Auth() {
                       <input
                         type="email"
                         placeholder="Email address"
-                        className="w-full bg-gami-surface border border-gami-border pl-9 pr-4 py-3 text-sm font-body text-white placeholder-gami-muted focus:outline-none focus:border-gami-purple transition-colors"
+                        className="w-full bg-gami-surface border border-gami-border pl-9 pr-4 py-3 text-sm font-sans text-white placeholder-gami-muted focus:outline-none focus:border-gami-purple transition-colors"
                       />
                     </div>
                     <div className="relative">
@@ -180,7 +180,7 @@ export default function Auth() {
                       <input
                         type="password"
                         placeholder="Password"
-                        className="w-full bg-gami-surface border border-gami-border pl-9 pr-4 py-3 text-sm font-body text-white placeholder-gami-muted focus:outline-none focus:border-gami-purple transition-colors"
+                        className="w-full bg-gami-surface border border-gami-border pl-9 pr-4 py-3 text-sm font-sans text-white placeholder-gami-muted focus:outline-none focus:border-gami-purple transition-colors"
                       />
                     </div>
                     <button
@@ -224,7 +224,7 @@ export default function Auth() {
                 <h3 className="font-display font-bold text-2xl text-white mb-2">
                   Welcome back! 🎮
                 </h3>
-                <p className="text-gami-muted font-body text-sm mb-4">
+                <p className="text-gami-muted font-sans text-sm mb-4">
                   Connected as <span className="font-mono text-gami-green">0x742d...d8e</span>
                 </p>
                 <div className="flex items-center justify-center gap-2">
@@ -235,7 +235,7 @@ export default function Auth() {
             )}
           </AnimatePresence>
 
-          <p className="text-center text-xs font-body text-gami-muted mt-6">
+          <p className="text-center text-xs font-sans text-gami-muted mt-6">
             Don't have an account?{' '}
             <Link to="/waitlist" className="text-gami-purple hover:text-gami-accent transition-colors">
               Join the waitlist

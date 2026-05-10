@@ -210,7 +210,7 @@ export default function AgentChat() {
                   {/* Message Bubble */}
                   {msg.content && msg.content !== "Let me check your current state..." && msg.content !== "Checking your wallet..." && msg.content !== "Let me check your wallet..." && (
                     <div
-                      className={`px-4 py-3 text-sm font-body leading-relaxed whitespace-pre-line ${
+                      className={`px-4 py-3 text-sm font-sans leading-relaxed whitespace-pre-line ${
                         msg.role === 'user'
                           ? 'bg-gami-purple text-white shadow-brutal-sm border border-gami-purple'
                           : 'bg-gami-surface text-white border border-gami-border shadow-brutal-sm'
@@ -251,7 +251,7 @@ export default function AgentChat() {
               <button
                 key={p}
                 onClick={() => sendMessage(p)}
-                className="flex-shrink-0 text-xs font-body text-gami-muted bg-gami-surface border border-gami-border px-3 py-1.5 hover:text-white hover:border-gami-purple transition-colors"
+                className="flex-shrink-0 text-xs font-sans text-gami-muted bg-gami-surface border border-gami-border px-3 py-1.5 hover:text-white hover:border-gami-purple transition-colors"
               >
                 {p}
               </button>
@@ -267,7 +267,7 @@ export default function AgentChat() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && sendMessage()}
                 placeholder="Ask about your XP, quests, wallet..."
-                className="w-full bg-gami-bg border border-gami-border px-4 py-3 text-white font-body text-sm placeholder-gami-muted focus:outline-none focus:border-gami-purple transition-colors"
+                className="w-full bg-gami-bg border border-gami-border px-4 py-3 text-white font-sans text-sm placeholder-gami-muted focus:outline-none focus:border-gami-purple transition-colors"
               />
             </div>
             <button
@@ -303,7 +303,7 @@ export default function AgentChat() {
               {activeQuests.map((q) => (
                 <div key={q.title}>
                   <div className="flex justify-between mb-1">
-                    <span className="text-xs font-body text-gami-muted">{q.title}</span>
+                    <span className="text-xs font-sans text-gami-muted">{q.title}</span>
                     <span className="text-xs font-mono" style={{ color: q.color }}>{q.progress}%</span>
                   </div>
                   <div className="w-full h-1.5 bg-gami-border">
@@ -370,7 +370,7 @@ export default function AgentChat() {
                 'Compare staking tiers',
                 'Track leaderboard rank',
               ].map((cap) => (
-                <div key={cap} className="flex items-center gap-2 text-xs font-body text-gami-muted">
+                <div key={cap} className="flex items-center gap-2 text-xs font-sans text-gami-muted">
                   <span className="text-gami-green">✓</span> {cap}
                 </div>
               ))}

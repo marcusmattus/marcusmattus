@@ -168,7 +168,7 @@ export default function Waitlist() {
             Be First to the<br />
             <span className="text-gami-purple">XP Economy</span>
           </h1>
-          <p className="text-gami-muted font-body text-xl max-w-xl mx-auto mb-10 leading-relaxed">
+          <p className="text-gami-muted font-sans text-xl max-w-xl mx-auto mb-10 leading-relaxed">
             Join 12,847+ developers and players on the Gami Protocol waitlist.
             Get early access, whitelist spots, and Genesis NFT badges.
           </p>
@@ -182,7 +182,7 @@ export default function Waitlist() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address"
                 required
-                className="flex-1 bg-gami-surface border border-gami-border px-5 py-4 text-white font-body placeholder-gami-muted focus:outline-none focus:border-gami-purple transition-colors"
+                className="flex-1 bg-gami-surface border border-gami-border px-5 py-4 text-white font-sans placeholder-gami-muted focus:outline-none focus:border-gami-purple transition-colors"
               />
               <button
                 type="submit"
@@ -206,7 +206,7 @@ export default function Waitlist() {
                   <div className="text-xs font-mono text-gami-green">Position #12,848 · Genesis Member</div>
                 </div>
               </div>
-              <p className="text-gami-muted text-sm font-body">
+              <p className="text-gami-muted text-sm font-sans">
                 Share your referral link to move up the list and earn bonus XP.
               </p>
             </motion.div>
@@ -244,7 +244,7 @@ export default function Waitlist() {
               >
                 <div className="text-3xl mb-3">{perk.icon}</div>
                 <h3 className="font-display font-semibold text-white text-sm mb-2">{perk.title}</h3>
-                <p className="text-gami-muted text-xs font-body leading-relaxed">{perk.desc}</p>
+                <p className="text-gami-muted text-xs font-sans leading-relaxed">{perk.desc}</p>
               </div>
             ))}
           </div>
@@ -256,7 +256,7 @@ export default function Waitlist() {
         <div className="text-center mb-12">
           <span className="text-xs font-mono text-gami-muted uppercase tracking-widest">Token Sale</span>
           <h2 className="font-display font-bold text-3xl text-white mt-2">ICO Rounds</h2>
-          <p className="text-gami-muted font-body mt-3">
+          <p className="text-gami-muted font-sans mt-3">
             Waitlist members get guaranteed allocation in the Public A round.
           </p>
         </div>
@@ -315,7 +315,7 @@ export default function Waitlist() {
         <div className="mt-6 flex justify-center">
           <Link
             to="/token-economy"
-            className="flex items-center gap-2 text-sm font-body text-gami-muted hover:text-white transition-colors"
+            className="flex items-center gap-2 text-sm font-sans text-gami-muted hover:text-white transition-colors"
           >
             Learn about tokenomics <ArrowRight size={14} />
           </Link>
@@ -332,7 +332,7 @@ export default function Waitlist() {
               <h2 className="font-display font-bold text-2xl text-white mt-2 mb-4">
                 Move up the list
               </h2>
-              <p className="text-gami-muted font-body mb-6 leading-relaxed">
+              <p className="text-gami-muted font-sans mb-6 leading-relaxed">
                 Each referral earns you <span className="text-gami-green font-mono">+100 XP</span> and
                 moves you <span className="text-gami-yellow font-mono">+10 positions</span> up the waitlist.
               </p>
@@ -432,7 +432,7 @@ export default function Waitlist() {
           <h2 className="font-display font-bold text-3xl text-white mb-4">
             The future of engagement is on-chain.
           </h2>
-          <p className="text-gami-muted font-body mb-8">
+          <p className="text-gami-muted font-sans mb-8">
             Don't miss the genesis window. Join the waitlist and secure your spot.
           </p>
           <Link

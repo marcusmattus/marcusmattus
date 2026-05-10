@@ -34,7 +34,7 @@ export default function Navbar() {
             <Link
               key={link.path}
               to={link.path}
-              className={`px-4 py-2 text-sm font-medium font-body transition-colors ${
+              className={`px-4 py-2 text-sm font-medium font-sans transition-colors ${
                 location.pathname === link.path
                   ? 'text-gami-green border-b-2 border-gami-green'
                   : 'text-gami-muted hover:text-white'
@@ -49,7 +49,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           <Link
             to="/waitlist"
-            className="text-sm text-gami-muted hover:text-white transition-colors font-body px-3 py-2"
+            className="text-sm text-gami-muted hover:text-white transition-colors font-sans px-3 py-2"
           >
             Waitlist
           </Link>

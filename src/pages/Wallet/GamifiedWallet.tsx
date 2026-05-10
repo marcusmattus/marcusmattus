@@ -159,7 +159,7 @@ export default function GamifiedWallet() {
                   </div>
                   <div>
                     <div className="font-display font-semibold text-white text-sm">{token.symbol}</div>
-                    <div className="text-xs font-body text-gami-muted">{token.name}</div>
+                    <div className="text-xs font-sans text-gami-muted">{token.name}</div>
                   </div>
                 </div>
                 <div className="text-right font-mono text-white text-sm">{token.balance.toLocaleString()}</div>
@@ -232,7 +232,7 @@ export default function GamifiedWallet() {
                       ? <ArrowLeftRight size={12} />
                       : <ArrowUpRight size={12} />}
                   </div>
-                  <span className="text-xs font-body text-white">{tx.type}</span>
+                  <span className="text-xs font-sans text-white">{tx.type}</span>
                 </div>
                 <span className={`font-mono text-sm font-semibold ${
                   tx.amount.startsWith('+') ? 'text-gami-green' : 'text-gami-red'
@@ -257,7 +257,7 @@ export default function GamifiedWallet() {
                   <select
                     value={fromChain}
                     onChange={(e) => setFromChain(e.target.value)}
-                    className="w-full bg-gami-bg border border-gami-border px-4 py-3 text-white font-body text-sm focus:outline-none focus:border-gami-purple"
+                    className="w-full bg-gami-bg border border-gami-border px-4 py-3 text-white font-sans text-sm focus:outline-none focus:border-gami-purple"
                   >
                     {chains.map((c) => <option key={c} value={c}>{c}</option>)}
                   </select>
@@ -277,7 +277,7 @@ export default function GamifiedWallet() {
                   <select
                     value={toChain}
                     onChange={(e) => setToChain(e.target.value)}
-                    className="w-full bg-gami-bg border border-gami-border px-4 py-3 text-white font-body text-sm focus:outline-none focus:border-gami-purple"
+                    className="w-full bg-gami-bg border border-gami-border px-4 py-3 text-white font-sans text-sm focus:outline-none focus:border-gami-purple"
                   >
                     {chains.map((c) => <option key={c} value={c}>{c}</option>)}
                   </select>
@@ -285,7 +285,7 @@ export default function GamifiedWallet() {
 
                 <div>
                   <label className="text-xs font-mono text-gami-muted uppercase tracking-widest block mb-2">Token</label>
-                  <select className="w-full bg-gami-bg border border-gami-border px-4 py-3 text-white font-body text-sm focus:outline-none focus:border-gami-purple">
+                  <select className="w-full bg-gami-bg border border-gami-border px-4 py-3 text-white font-sans text-sm focus:outline-none focus:border-gami-purple">
                     {tokens.map((t) => (
                       <option key={t.symbol} value={t.symbol}>
                         {t.symbol} — {t.balance} available

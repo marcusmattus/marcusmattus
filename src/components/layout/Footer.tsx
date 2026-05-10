@@ -37,7 +37,7 @@ export default function Footer() {
                 GAMI<span className="text-gami-green">.</span>
               </span>
             </Link>
-            <p className="text-gami-muted text-sm font-body leading-relaxed mb-6">
+            <p className="text-gami-muted text-sm font-sans leading-relaxed mb-6">
               Universal Gamification Infrastructure for the on-chain economy.
             </p>
             <div className="flex items-center gap-3">
@@ -73,7 +73,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       to={link.path}
-                      className="text-gami-muted hover:text-white text-sm font-body transition-colors flex items-center gap-1 group"
+                      className="text-gami-muted hover:text-white text-sm font-sans transition-colors flex items-center gap-1 group"
                     >
                       {link.label}
                       {link.path === '#' && (
@@ -91,7 +91,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gami-border mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gami-muted text-sm font-body">
+          <p className="text-gami-muted text-sm font-sans">
             © 2024 Gami Protocol. All rights reserved.
           </p>
           <div className="flex items-center gap-1">
