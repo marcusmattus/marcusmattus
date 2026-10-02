@@ -1,0 +1,48 @@
+{
+  "name": "gami-extension",
+  "version": "0.1.0",
+  "description": "Gami \u2014 discover and complete Gami quests on the site you are visiting.",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:mock": "node dev/mock-server.mjs",
+    "build": "tsc --noEmit && vite build && vite build -c vite.content.config.ts",
+    "build:dev": "vite build --mode development && vite build --mode development -c vite.content.config.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:security": "vitest run tests/security.test.ts",
+    "audit:permissions": "node scripts/audit-permissions.mjs",
+    "audit:remote-code": "node scripts/audit-remote-code.mjs",
+    "package:chrome": "node scripts/package.mjs",
+    "test:smoke": "npm run build:dev && node scripts/smoke-chromium.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/space-grotesk": "^5.3.0",
+    "@privy-io/js-sdk-core": "^0.77.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "zod": "^3.25.76",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/chrome": "^0.3.4",
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "eslint": "^10.11.0",
+    "playwright-core": "^1.63.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.0",
+    "vite": "^8.3.2",
+    "vitest": "^5.0.3"
+  },
+  "private": true,
+  "type": "module"
+}
