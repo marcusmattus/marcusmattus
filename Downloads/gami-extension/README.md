@@ -92,7 +92,7 @@ No secrets belong in these files: everything `VITE_` is public in the bundle.
 1. Create an app at Privy and enable **Email** login.
 2. Add `chrome-extension://<your-extension-id>` to the app's allowed origins (the ID is stable once published; for an unpacked build, set a `key` in the manifest or add the dev ID).
 3. If you enable CAPTCHA for email codes, sign-up will fail: the extension does not yet pass a CAPTCHA token.
-4. The Gami API must verify the Privy access token (Privy's verification key) on every request and map the Privy user to a Gami identity and wallet.
+4. The Gami API must verify the Privy access token on every request and map the Privy user to a Gami identity and wallet. The verification keys for the Gami Privy app are published at `https://auth.privy.io/api/v1/apps/cmrz2f6jc01560djmtczc288n/jwks.json`; this is configured on the API server, not in the extension.
 
 The extension uses Privy's headless core SDK for email codes only. It does not load Privy's hosted UI or embedded-wallet iframe, and never holds a private key.
 
