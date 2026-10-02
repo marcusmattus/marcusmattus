@@ -1,0 +1,9 @@
+body { margin: 0; background: #0E0E12; color: #fff; font-family: system-ui, sans-serif; }
+main { max-width: 880px; margin: 0 auto; padding: 4rem 1.5rem; display: flex; flex-direction: column; gap: 2rem; }
+h1 { margin: 0; font-size: 3rem; line-height: 1; }
+.eyebrow, .label { margin: 0; font: 12px ui-monospace, monospace; letter-spacing: 0.1em; color: #9C6CFF; }
+.label { color: #A6A6B3; } .value { margin: 8px 0 0; font-size: 1.5rem; font-weight: 700; } .reward { color: #4ADE80; }
+.card { display: flex; flex-direction: column; gap: 1.25rem; padding: 2rem; border: 3px solid #fff; background: #16161D; box-shadow: 8px 8px 0 #000; }
+.row { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; }
+button { align-self: flex-start; height: 56px; padding: 0 28px; border: 3px solid #fff; background: #6E3CFB; color: #fff; font-weight: 700; font-size: 16px; letter-spacing: 0.05em; box-shadow: 6px 6px 0 #000; cursor: pointer; }
+#status { margin: 0; color: #A6A6B3; }
