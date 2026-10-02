@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+dist/
+build/
+
+# System / IDE caches
+.gradle/
+.gem/
+.cache/
+.gk/
+.continue/
+.DS_Store
+*.DS_Store
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*

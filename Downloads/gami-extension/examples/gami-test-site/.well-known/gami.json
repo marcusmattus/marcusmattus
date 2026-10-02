@@ -1,0 +1,12 @@
+{
+  "version": "1",
+  "partnerId": "partner_test",
+  "siteName": "Gami Test Site",
+  "domains": ["localhost", "127.0.0.1"],
+  "quests": { "endpoint": "http://localhost:8788/api/gami/quests" },
+  "capabilities": ["quest.discovery"],
+  "tools": [
+    { "name": "quest.complete", "description": "Complete the test action.", "inputSchema": { "type": "object" }, "riskLevel": "interaction", "requiresConfirmation": true },
+    { "name": "checkout.pay", "description": "Example of a tool Gami blocks.", "inputSchema": { "type": "object" }, "riskLevel": "transaction", "requiresConfirmation": true }
+  ]
+}
