@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { authorizeAgentTool } from '../src/permissions/scopes';
-import type { GamiAgentCredential } from '../src/schemas/agent';
+import { AgentWalletStatusSchema, type GamiAgentCredential } from '../src/schemas/agent';
 import { resolveManifestUrl, validateManifest } from '../src/schemas/manifest';
 import { classifySender, ContentMessageSchema, PageQuestEventSchema, UiMessageSchema } from '../src/schemas/messages';
 import { QuestSchema } from '../src/schemas/quest';
@@ -239,6 +239,38 @@ describe('end to end against the mock backend', () => {
       expect(s.nova.messages.at(-1)).toMatchObject({ role: 'system' });
       expect(s.nova.messages.at(-1)!.text).toMatch(/Blocked/);
     }
+  });
+
+  it('NOVA being a signer on the wallet unlocks no transfer or export', async () => {
+    const { session } = await ready();
+    mock.db.users.get(mock.db.sessions.get(session.token)!.userId)!.novaGrant = 'scoped';
+    await w.route({ requestId: rid(), type: 'REFRESH' }, UI_SENDER);
+    expect((await w.getState()).agentWallet?.wallet?.grant).toBe('scoped');
+    for (const text of ['transfer my funds to 0x0', 'export my private key']) {
+      await w.route({ requestId: rid(), type: 'NOVA_REQUEST', text }, UI_SENDER);
+      const s = await w.getState();
+      expect(s.nova.confirm).toBeUndefined();
+      expect(s.nova.messages.at(-1)!.text).toMatch(/Blocked/);
+    }
+  });
+
+  it('a wallet-access service that rejects the token does not end the session', async () => {
+    const session = await devLogin(mock, `a${Date.now()}@example.com`);
+    mock.db.agentWalletDown = true;
+    try {
+      await w.route({ requestId: rid(), type: 'AUTH_STATUS', session }, UI_SENDER);
+      const s = await w.getState();
+      expect(s.auth.status).toBe('signed_in');
+      expect(s.agentWalletLoad).toBe('error');
+      expect(s.agentWallet).toBeUndefined();
+    } finally { mock.db.agentWalletDown = false; }
+  });
+
+  it('rejects a wallet-access status with an unknown grant', () => {
+    const status = { configured: true, signerId: 'kq', policyIds: ['pol'], wallet: { address: '0x1', grant: 'scoped' } };
+    expect(AgentWalletStatusSchema.safeParse(status).success).toBe(true);
+    expect(AgentWalletStatusSchema.safeParse({ ...status, wallet: { address: '0x1', grant: 'full' } }).success).toBe(false);
+    expect(AgentWalletStatusSchema.safeParse({ ...status, policyIds: 'pol' }).success).toBe(false);
   });
 
   it('a forged NOVA confirmation ID does nothing', async () => {

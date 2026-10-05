@@ -7,7 +7,7 @@ import { loadEnv } from 'vite';
 const env = { ...loadEnv('production', process.cwd(), 'VITE_'), ...Object.fromEntries(Object.entries(process.env).filter(([k]) => k.startsWith('VITE_'))) };
 if (env.VITE_GAMI_DEV_MOCK === 'true') { console.error('Refusing to package: VITE_GAMI_DEV_MOCK=true.'); process.exit(1); }
 const missing = ['VITE_PRIVY_APP_ID', 'VITE_GAMI_API_URL', 'VITE_NOVA_API_URL'].filter((k) => !env[k]);
-const insecure = ['VITE_GAMI_API_URL', 'VITE_NOVA_API_URL', 'VITE_GAMI_MCP_URL'].filter((k) => env[k] && !env[k].startsWith('https://'));
+const insecure = ['VITE_GAMI_API_URL', 'VITE_NOVA_API_URL', 'VITE_GAMI_MCP_URL', 'VITE_GAMI_AGENT_URL'].filter((k) => env[k] && !env[k].startsWith('https://'));
 if (insecure.length) { console.error(`Refusing to package: ${insecure.join(', ')} must be https://`); process.exit(1); }
 
 const run = (cmd) => execSync(cmd, { stdio: 'inherit', env: { ...process.env, VITE_GAMI_DEV_MOCK: 'false' } });

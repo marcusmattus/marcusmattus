@@ -54,6 +54,6 @@ https://gamiprotocol.io/legal/chrome-extension-privacy (publish `docs/website/ch
 
 1. Set `VITE_PRIVY_APP_ID`, `VITE_GAMI_API_URL`, `VITE_NOVA_API_URL` in `.env.production`; run `npm run package:chrome`. The ZIP must not end in `-UNCONFIGURED`.
 2. In the Privy dashboard, add `chrome-extension://<published-id>` as an allowed origin and enable email login.
-3. Confirm the Gami and NOVA APIs send CORS headers for that origin.
+3. Confirm the Gami and NOVA APIs send CORS headers for that origin. If `VITE_GAMI_AGENT_URL` is set, add the origin to `GAMI_ALLOWED_ORIGINS` on the Gami Wallet app's server too.
 4. Supply reviewer test instructions: a Gami-enabled URL and a test email that can receive a code.
 5. Replace the bracketed placeholders in the privacy policy.
