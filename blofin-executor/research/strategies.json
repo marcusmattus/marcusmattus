@@ -1,0 +1,133 @@
+{
+  "_doc": "Research record per strategy id. null = unknown -> that robustness component scores 0 and is flagged. pf/net_pct/dd_pct are OOS per symbol (net_pct and dd_pct in percent). walk_forward: list of folds {pf, net_pct}. param_stability: 0-1. cost_stress: {pf_at_2x_costs}.",
+  "B-EMA10-100-LO-ATR3.5": {
+    "source": "trader.dev Pine 01M48060TF19E5R3HNM6GE5469 (ETH 01M4807SP5K5Q5R8JCS2ZHS2QX, SOL 01M4807VW3H56WYP669MQTBV9S); params tuned on BTC Oct 2021-Dec 2024 only",
+    "oos_window": "2025-01 to 2026-10",
+    "oos": {
+      "BTC-USDT": {
+        "pf": 1.37,
+        "net_pct": 8.8,
+        "dd_pct": 17,
+        "trades": null,
+        "sharpe": null,
+        "sortino": null
+      },
+      "ETH-USDT": {
+        "pf": 1.77,
+        "net_pct": 63,
+        "dd_pct": 32,
+        "trades": null,
+        "sharpe": null,
+        "sortino": null
+      },
+      "SOL-USDT": {
+        "pf": 1.75,
+        "net_pct": 41,
+        "dd_pct": 28,
+        "trades": null,
+        "sharpe": null,
+        "sortino": null
+      }
+    },
+    "oos_trades_per_pair": [
+      18,
+      26
+    ],
+    "walk_forward": [
+      {
+        "symbol": "BTC-USDT",
+        "period": "2022",
+        "net_pct": -10.2,
+        "pf": null
+      },
+      {
+        "symbol": "BTC-USDT",
+        "period": "2023",
+        "net_pct": 67.0,
+        "pf": null
+      },
+      {
+        "symbol": "BTC-USDT",
+        "period": "2024",
+        "net_pct": 119.0,
+        "pf": null
+      },
+      {
+        "symbol": "BTC-USDT",
+        "period": "2025",
+        "net_pct": -3.3,
+        "pf": null
+      },
+      {
+        "symbol": "BTC-USDT",
+        "period": "2026-YTD",
+        "net_pct": 12.6,
+        "pf": null
+      },
+      {
+        "symbol": "ETH-USDT",
+        "period": "2022",
+        "net_pct": -5.8,
+        "pf": null
+      },
+      {
+        "symbol": "ETH-USDT",
+        "period": "2023",
+        "net_pct": -10.5,
+        "pf": null
+      },
+      {
+        "symbol": "ETH-USDT",
+        "period": "2024",
+        "net_pct": 50.9,
+        "pf": null
+      },
+      {
+        "symbol": "ETH-USDT",
+        "period": "2025",
+        "net_pct": 61.2,
+        "pf": null
+      },
+      {
+        "symbol": "ETH-USDT",
+        "period": "2026-YTD",
+        "net_pct": 1.2,
+        "pf": null
+      },
+      {
+        "symbol": "SOL-USDT",
+        "period": "2022",
+        "net_pct": -11.1,
+        "pf": null
+      },
+      {
+        "symbol": "SOL-USDT",
+        "period": "2023",
+        "net_pct": 117.0,
+        "pf": null
+      },
+      {
+        "symbol": "SOL-USDT",
+        "period": "2024",
+        "net_pct": 38.5,
+        "pf": null
+      },
+      {
+        "symbol": "SOL-USDT",
+        "period": "2025",
+        "net_pct": 22.7,
+        "pf": null
+      },
+      {
+        "symbol": "SOL-USDT",
+        "period": "2026-YTD",
+        "net_pct": 14.9,
+        "pf": null
+      }
+    ],
+    "param_stability": null,
+    "cost_stress": null,
+    "walk_forward_note": "fixed-parameter per calendar year on trader.dev tv_jul26 (2026-10-06 tournament); 2022-2024 overlap the IS tuning window; not anchored re-tuning",
+    "cost_stress_note": "trader.dev ignores commission/slippage overrides; only a rough net estimate exists (BTC ~+5%, ETH ~+57%, SOL ~+37% after doubled commission), no PF -> left unknown"
+  }
+}
