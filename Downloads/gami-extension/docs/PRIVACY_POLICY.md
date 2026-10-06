@@ -27,6 +27,7 @@ This happens on your device. If the site has no valid Gami manifest, nothing abo
 | Email address | Sign up / sign in | Privy | To send you a one-time code and identify your account |
 | Session tokens | After sign-in | Stored on your device; the access token is sent to Gami with each request | To authenticate you |
 | Gami identity: user ID, public wallet address, XP, level, Universal Points | After sign-in | Received from Gami | To show your account |
+| NOVA wallet access: whether NOVA is a signer on your Gami wallet, and under which policy | After sign-in | Received from Gami (the Gami Wallet service, which is sent your access token) | To show you what NOVA may do with your wallet |
 | Site origin and partner ID | When you open Gami on a site with a valid Gami manifest | Gami | To check the site is a registered partner and list its quests |
 | Quest activity: quest ID, start, the site's signed completion proof (event ID, nonce, timestamp, signature) | When you start and complete a quest | Gami | To verify the quest and issue the reward |
 | NOVA questions and Gami context: your question, the site name and origin, its quests, your XP, level, points and reward status | When you send NOVA a message | Gami (NOVA service) | To answer questions about quests |
@@ -49,6 +50,8 @@ A site is connected only when you approve the prompt the first time you start on
 ## NOVA
 
 NOVA is a quest assistant. It works under a short-lived credential limited to reading your Gami profile, wallet address, XP, points, rewards and quests, and starting or submitting quests. It cannot sign transactions, transfer funds or export a wallet. It cannot start a quest unless you press Confirm.
+
+If you give NOVA access to your wallet in the Gami Wallet app, NOVA becomes a signer on that wallet under a Privy policy that currently blocks every action. The extension only displays this status. It cannot give or revoke the access, and it cannot sign or send.
 
 ## Retention
 

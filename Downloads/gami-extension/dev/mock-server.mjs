@@ -107,6 +107,12 @@ export async function startMock({ apiPort = 8787, sitePort = 8788, confirmDelayM
     if (path === '/identity') return json(res, 200, { id: user.id, privyUserId: `did:privy:dev-${user.id}`, walletAddress: user.wallet, network: 'gami-1' });
     if (path === '/xp') return json(res, 200, { xp: user.xp, level: 4, nextLevelXp: 2000 });
     if (path === '/points') return json(res, 200, { points: user.points });
+    // Stands in for the Gami Wallet app's /api/agent/wallet. Tests set `user.novaGrant`
+    // and `db.agentWalletDown` directly.
+    if (path === '/agent/wallet' && req.method === 'GET') {
+      if (db.agentWalletDown) return json(res, 401, { error: 'invalid_token' });
+      return json(res, 200, { configured: true, signerId: 'kq_dev_nova', policyIds: ['pol_dev_deny_all'], wallet: { address: user.wallet, grant: user.novaGrant ?? 'none' } });
+    }
     if (path === '/agent/credential') {
       const scopes = (Array.isArray(body.scopes) ? body.scopes : []).filter((s) => SAFE_SCOPES.includes(s));
       const cred = { agentId: 'nova', userId: user.id, walletAddress: user.wallet, scopes, expiresAt: new Date(Date.now() + 600_000).toISOString(), sessionId: randomUUID(), token: `agent_${randomBytes(24).toString('hex')}` };

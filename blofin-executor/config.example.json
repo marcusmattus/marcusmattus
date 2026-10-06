@@ -1,0 +1,16 @@
+{
+  "mode": "PAPER",
+  "trading_equity_usdt": 67,
+  "gbp_per_usdt": 0.745,
+  "risk_pct": 0.0025,
+  "instruments": [
+    "BTC-USDT",
+    "ETH-USDT",
+    "SOL-USDT"
+  ],
+  "strategies": [
+    "B-EMA10-100-LO-ATR3.5"
+  ],
+  "robustness_threshold": 70,
+  "telegram_chat_id": null
+}

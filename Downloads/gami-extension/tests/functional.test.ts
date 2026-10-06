@@ -183,3 +183,27 @@ describe('NOVA', () => {
     expect(s.active[QUEST]).toBeUndefined();
   });
 });
+
+describe('NOVA wallet access', () => {
+  const userOf = (token: string) => mock.db.users.get(mock.db.sessions.get(token)!.userId)!;
+
+  it('shows no access until it is granted in the wallet app, then the scoped grant', async () => {
+    const session = await signIn();
+    let s = await w.getState();
+    expect(s.agentWalletLoad).toBe('ready');
+    expect(s.agentWallet).toMatchObject({ configured: true, wallet: { address: s.identity!.walletAddress, grant: 'none' } });
+    userOf(session.token).novaGrant = 'scoped';
+    await w.route({ requestId: rid(), type: 'REFRESH' }, UI_SENDER);
+    s = await w.getState();
+    expect(s.agentWallet?.wallet?.grant).toBe('scoped');
+  });
+
+  it('is cleared when the user signs out', async () => {
+    await signIn();
+    expect((await w.getState()).agentWallet).toBeDefined();
+    await w.route({ requestId: rid(), type: 'AUTH_STATUS', session: null }, UI_SENDER);
+    const s = await w.getState();
+    expect(s.agentWallet).toBeUndefined();
+    expect(s.agentWalletLoad).toBe('idle');
+  });
+});

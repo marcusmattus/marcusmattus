@@ -1,5 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { GAMI_MCP_TOOLS } from '../permissions/scopes';
+import type { NovaGrant } from '../schemas/agent';
 import { SAFE_AGENT_SCOPES } from '../shared/constants';
 import { userMessage } from '../shared/errors';
 import { Banner, ConnectPrompt, ErrorNote, Header, Offline, QuestList, SignIn, SiteLine, SiteStatus, Stats, fmt, host, rewardText } from '../ui/components';
@@ -122,6 +123,38 @@ function Activity() {
   );
 }
 
+const GRANT: Record<NovaGrant, { tag: string; tone: string; text: string }> = {
+  none: { tag: 'NO ACCESS', tone: '', text: 'NOVA is not a signer on your wallet.' },
+  scoped: { tag: 'ALL ACTIONS BLOCKED', tone: 'goodb', text: 'NOVA is a signer on your wallet. Its Privy policy blocks every action, so it cannot sign or send anything.' },
+  unrestricted: { tag: 'NO LIMITS', tone: 'badb', text: 'NOVA is a signer on your wallet with no policy limiting it. Revoke access in the Gami Wallet app.' },
+  mismatched: { tag: 'UNKNOWN POLICY', tone: 'warnb', text: 'NOVA is a signer on your wallet under a policy this version does not recognise. Revoke access in the Gami Wallet app.' },
+  unsupported: { tag: 'NOT AVAILABLE', tone: '', text: 'This wallet cannot give NOVA access.' },
+};
+
+/** Read-only. Shown only when a wallet-access service is configured for this build. */
+function AgentWallet() {
+  const app = useStore((s) => s.app);
+  const load = app.agentWalletLoad;
+  if (!load || load === 'idle') return null;
+  const status = app.agentWallet;
+  const g = status?.wallet ? GRANT[status.wallet.grant] : null;
+  return (
+    <>
+      <div className="eyebrow">/ NOVA WALLET ACCESS</div>
+      {load === 'loading' && !g && <p className="muted" aria-busy="true">Checking…</p>}
+      {load === 'error' && <p className="muted">Could not check NOVA’s wallet access. {app.agentWalletError ? userMessage(app.agentWalletError) : ''}</p>}
+      {load === 'ready' && !g && <p className="muted">{status?.configured ? 'No Gami wallet found for this account.' : 'NOVA wallet access is not set up yet.'}</p>}
+      {g && (
+        <div className="card">
+          <div className="row"><span className="mono">NOVA SIGNER</span><span className={`tag ${g.tone}`}>{g.tag}</span></div>
+          <p className="muted small">{g.text}</p>
+        </div>
+      )}
+      <p className="muted small">Access is given and revoked in the Gami Wallet app. This extension cannot grant access, sign or send.</p>
+    </>
+  );
+}
+
 function Settings({ auth }: { auth: ReturnType<typeof useAuth> }) {
   const app = useStore((s) => s.app);
   const connections = useStore((s) => s.connections);
@@ -142,6 +175,7 @@ function Settings({ auth }: { auth: ReturnType<typeof useAuth> }) {
         <div><dt className="mono dim">NETWORK</dt><dd className="mono">{app.identity?.network ?? '—'}</dd></div>
         <div><dt className="mono dim">SIGN-IN</dt><dd className="mono">Privy</dd></div>
       </dl>
+      <AgentWallet />
       <div className="eyebrow">/ NOVA SCOPES</div>
       <div className="chips">{SAFE_AGENT_SCOPES.map((s) => <span className="tag" key={s}>{s}</span>)}</div>
       <div className="eyebrow">/ PRIVACY</div>
