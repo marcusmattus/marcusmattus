@@ -2,7 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react';
 import { GAMI_MCP_TOOLS } from '../permissions/scopes';
 import type { NovaGrant } from '../schemas/agent';
 import { SAFE_AGENT_SCOPES } from '../shared/constants';
-import { userMessage } from '../shared/errors';
+import { userMessage, type ErrorInfo } from '../shared/errors';
 import { Banner, ConnectPrompt, ErrorNote, Header, Offline, QuestList, SignIn, SiteLine, SiteStatus, Stats, fmt, host, rewardText } from '../ui/components';
 import { activeTabId, scanActiveTab, send, useStore } from '../ui/store';
 import { useAuth } from '../ui/useAuth';
@@ -131,6 +131,11 @@ const GRANT: Record<NovaGrant, { tag: string; tone: string; text: string }> = {
   unsupported: { tag: 'NOT AVAILABLE', tone: '', text: 'This wallet cannot give NOVA access.' },
 };
 
+/** The wallet service can reject a token while the Gami session is still valid, so a 401 here must not say the session expired. */
+function walletErrorMessage(e: ErrorInfo): string {
+  return e.code === 'unauthorized' ? 'The wallet-access service did not accept your sign-in.' : userMessage(e);
+}
+
 /** Read-only. Shown only when a wallet-access service is configured for this build. */
 function AgentWallet() {
   const app = useStore((s) => s.app);
@@ -142,7 +147,7 @@ function AgentWallet() {
     <>
       <div className="eyebrow">/ NOVA WALLET ACCESS</div>
       {load === 'loading' && !g && <p className="muted" aria-busy="true">Checking…</p>}
-      {load === 'error' && <p className="muted">Could not check NOVA’s wallet access. {app.agentWalletError ? userMessage(app.agentWalletError) : ''}</p>}
+      {load === 'error' && <p className="muted">Could not check NOVA’s wallet access. {app.agentWalletError ? walletErrorMessage(app.agentWalletError) : ''}</p>}
       {load === 'ready' && !g && <p className="muted">{status?.configured ? 'No Gami wallet found for this account.' : 'NOVA wallet access is not set up yet.'}</p>}
       {g && (
         <div className="card">
