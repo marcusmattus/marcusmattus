@@ -8,6 +8,7 @@ export default defineConfig({
     env: {
       VITE_GAMI_API_URL: 'http://127.0.0.1:18787',
       VITE_NOVA_API_URL: 'http://127.0.0.1:18787/nova',
+      VITE_GAMI_AGENT_URL: 'http://127.0.0.1:18787',
       VITE_GAMI_DEV_MOCK: 'true',
     },
   },

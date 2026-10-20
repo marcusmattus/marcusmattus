@@ -1,3 +1,4 @@
+import type { AgentWalletStatus } from '../schemas/agent';
 import type { GamiIdentity, Balances } from '../schemas/identity';
 import type { Quest, QuestReward } from '../schemas/quest';
 import type { DiscoveredTool } from '../webmcp/discover';
@@ -59,6 +60,10 @@ export type AppState = {
   active: Record<string, ActiveQuest>;
   pendingConnection?: { origin: string; siteName: string; partnerId?: string; questId: string };
   nova: { messages: NovaMessage[]; load: Load; error?: ErrorInfo; confirm?: NovaConfirm };
+  /** NOVA's signer status on the user's wallet. Read-only here; `idle` means not configured. */
+  agentWallet?: AgentWalletStatus;
+  agentWalletLoad: Load;
+  agentWalletError?: ErrorInfo;
 };
 
 export type ActivityEntry = {
@@ -79,5 +84,6 @@ export function initialState(): AppState {
     questsLoad: 'idle',
     active: {},
     nova: { messages: [], load: 'idle' },
+    agentWalletLoad: 'idle',
   };
 }

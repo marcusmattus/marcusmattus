@@ -5,5 +5,6 @@ interface ImportMetaEnv {
   readonly VITE_GAMI_API_URL?: string;
   readonly VITE_GAMI_MCP_URL?: string;
   readonly VITE_NOVA_API_URL?: string;
+  readonly VITE_GAMI_AGENT_URL?: string;
   readonly VITE_GAMI_DEV_MOCK?: string;
 }

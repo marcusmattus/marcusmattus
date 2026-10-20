@@ -14,7 +14,7 @@ The manifest requests four permissions and no host permissions. `npm run audit:p
 | Permission | Why it is absent |
 |---|---|
 | `tabs` | `activeTab` gives the URL of the invoked tab. `chrome.tabs.query`, `tabs.sendMessage`, `tabs.onActivated` and `tabs.onUpdated` work without it (they return no URLs). |
-| host permissions / `<all_urls>` | Not needed. The Gami API and Privy are reached with ordinary CORS requests. **The Gami API and NOVA API must therefore send CORS headers allowing the extension origin** (`chrome-extension://<id>`). |
+| host permissions / `<all_urls>` | Not needed. The Gami API and Privy are reached with ordinary CORS requests. **The Gami API and NOVA API must therefore send CORS headers allowing the extension origin** (`chrome-extension://<id>`). The same applies to the Gami Wallet app's API when `VITE_GAMI_AGENT_URL` is set. |
 | `identity` | Sign-up uses Privy email codes, not `chrome.identity`. |
 | `alarms` | There is no scheduled background work. Reward polling runs only while a quest is being verified, and resumes when the user opens Gami. |
 | `notifications` | Notifications are not implemented in this version. |

@@ -5,7 +5,11 @@ import { startMock, sign } from '../../dev/mock-server.mjs';
 
 export type Mock = {
   apiUrl: string; siteUrl: string; close: () => Promise<unknown>;
-  db: { sessions: Map<string, { userId: string; expiresAt: number }>; users: Map<string, { xp: number }> };
+  db: {
+    sessions: Map<string, { userId: string; expiresAt: number }>;
+    users: Map<string, { xp: number; novaGrant?: string }>;
+    agentWalletDown?: boolean;
+  };
 };
 export { sign };
 

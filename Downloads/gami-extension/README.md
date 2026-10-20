@@ -8,10 +8,11 @@ Manifest V3 · TypeScript (strict) · React · Vite · Zustand · Zod · Privy e
 
 ## Status, plainly
 
-Working and tested against the bundled mock backend: sign-up, session restore, identity, XP and points, site detection, manifest validation, quest start, signed completion, server verification, reward confirmation, XP update, duplicate protection, side panel, NOVA with scoped authorization, connected sites.
+Working and tested against the bundled mock backend: sign-up, session restore, identity, XP and points, site detection, manifest validation, quest start, signed completion, server verification, reward confirmation, XP update, duplicate protection, side panel, NOVA with scoped authorization, connected sites, NOVA wallet-access status.
 
 Not yet proven:
 
+- **NOVA wallet access against real Privy.** The status comes from the Gami Wallet app's API (`gami-mobileapp`, `GET /api/agent/wallet`). That server has been checked against a fake Privy only, and is not deployed with its secrets yet.
 - **Privy sign-up against a real Privy app.** The code is written against `@privy-io/js-sdk-core` and typechecks, but needs your `VITE_PRIVY_APP_ID` to run.
 - **The production Gami API and NOVA.** The client expects the endpoints listed below. If production differs, `src/api/` changes.
 - **The toolbar-click path in real Chrome** is not covered by automation (no tool can click the toolbar button). Follow "Test it by hand".
@@ -83,6 +84,7 @@ Load it: `chrome://extensions` → Developer mode → **Load unpacked** → sele
 | `VITE_GAMI_API_URL` | Gami API base URL. HTTPS. |
 | `VITE_NOVA_API_URL` | NOVA API base URL. HTTPS. |
 | `VITE_GAMI_MCP_URL` | Reserved for the Gami MCP transport. Unused in this version. |
+| `VITE_GAMI_AGENT_URL` | Optional. Base URL of the Gami Wallet app's API (`https://<wallet-app-host>/api`), which serves NOVA's wallet-access status. HTTPS. Empty hides the status. |
 | `VITE_GAMI_DEV_MOCK` | `true` only in development. Selects the mock sign-in and allows `http://localhost`. `package:chrome` refuses to run with it on and checks the bundle for mock code. |
 
 No secrets belong in these files: everything `VITE_` is public in the bundle.
@@ -112,6 +114,8 @@ All JSON; `Authorization: Bearer <Privy access token>`; CORS must allow the exte
 | `POST /agent/credential` `{ scopes, origin }` | `GamiAgentCredential` plus `token` |
 | `POST {NOVA}/chat` | `{ reply, toolRequest? }` |
 
+| `GET {AGENT}/agent/wallet` | `{ configured, signerId, policyIds, wallet: { address, grant } \| null }`. Served by the Gami Wallet app, not the Gami API; same bearer token. |
+
 Schemas: `src/schemas/`. Reference implementation: `dev/mock-server.mjs`.
 
 ## Making a site Gami-enabled
@@ -124,6 +128,14 @@ WebMCP is what the *site* exposes; Gami MCP is what *Gami* exposes. In this vers
 
 NOVA receives structured context only (site name, quests, XP, level, points, reward status), never the page. It runs under a short-lived credential with these scopes: `profile:read wallet:read xp:read points:read rewards:read quests:read quests:start quests:submit nova:use`. Every tool request passes `authorizeAgentTool` (`src/permissions/scopes.ts`): unknown tools, missing scopes, expired credentials and anything touching signing, transfers, export, treasury or admin are denied. Starting a quest needs the user's Confirm.
 
+### NOVA wallet access (Privy agentic wallet)
+
+In the Gami Wallet app a user can add NOVA as a signer on their own Privy wallet, bound to a Privy policy. The policy shipped today denies every action. The extension's part is read-only: after sign-in the worker asks the wallet app's API for the status and Settings shows it (`none`, `scoped`, `unrestricted`, `mismatched`, `unsupported`).
+
+- The extension cannot grant or revoke access and has no signing path. The scope rules above are unchanged: signing, transfers and export stay denied whatever the status is.
+- The wallet app's API is a separate service. If it is down or rejects the token, only this status shows as unavailable; the session is not ended.
+- That API must list the extension's origin in its `GAMI_ALLOWED_ORIGINS`.
+
 ## Scripts
 
 | Script | Does |
@@ -131,7 +143,7 @@ NOVA receives structured context only (site name, quests, XP, level, points, rew
 | `npm run dev` | Mock backend + watch build |
 | `npm run build` | Typecheck + production build |
 | `npm run typecheck` / `lint` | TypeScript strict / ESLint |
-| `npm run test` | All tests (57) against the mock backend |
+| `npm run test` | All tests (62) against the mock backend |
 | `npm run test:security` | Security tests only |
 | `npm run test:smoke` | Loads the dev build in real Chromium (needs `CHROMIUM_PATH` or an installed Chromium) |
 | `npm run audit:permissions` | Manifest permission audit |

@@ -2,6 +2,7 @@ import { connectSite, disconnectSite } from '../permissions/sitePermissions';
 import { classifySender, ContentMessageSchema, UiMessageSchema, type Reply } from '../schemas/messages';
 import { GamiError, toErrorInfo } from '../shared/errors';
 import { addActivity, getState, updateState } from '../storage';
+import { loadAgentWallet } from './agentWallet';
 import { applySession, loadBalances } from './auth';
 import { clearAgentCredential, novaAsk, novaConfirm } from './nova';
 import { handleQuestEvent, resumePending, startQuestFlow } from './quests';
@@ -24,10 +25,10 @@ async function handleUi(raw: unknown): Promise<void> {
     case 'AUTH_STATUS':
       if (!m.session) clearAgentCredential();
       await applySession(m.session);
-      if (m.session) { await loadQuests(); await resumePending(); }
+      if (m.session) { await loadQuests(); await resumePending(); await loadAgentWallet(); }
       return;
     case 'REFRESH':
-      await Promise.all([loadBalances(), loadQuests()]);
+      await Promise.all([loadBalances(), loadQuests(), loadAgentWallet()]);
       await resumePending();
       return;
     case 'SCAN_SITE':
